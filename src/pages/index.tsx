@@ -23,7 +23,7 @@ function HomepageHeader() {
           </Translate>
         </Heading>
         <p className="hero__subtitle">
-          {siteConfig.tagline}
+          {/* {siteConfig.tagline} */}
           <Translate
             id="homepage.tagline"
           >
