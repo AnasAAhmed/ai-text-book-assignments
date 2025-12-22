@@ -5,8 +5,11 @@ import type * as Preset from '@docusaurus/preset-classic';
 // Runs in Node.js – no browser APIs here
 
 const config: Config = {
+  //doesnt matter i am using tranlated custom text not this
   title: 'Physical AI & Humanoid Robotics',
   tagline: 'A comprehensive textbook on embodied intelligence, control, and humanoid systems',
+  //doesnt matter i am using tranlated custom text not this
+
   favicon: 'img/favicon.ico',
 
   future: {
@@ -22,19 +25,20 @@ const config: Config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-i18n: {
-  defaultLocale: 'en',
-  locales: ['en', 'ur'],
-  localeConfigs: {
-    en: {
-      label: 'English',
-    },
-    ur: {
-      label: 'اردو',
-      direction: 'rtl',
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'ur'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+        htmlLang: 'en-GB',
+      },
+      ur: {
+        label: 'اردو',
+        direction: 'rtl',
+      },
     },
   },
-},
 
 
   presets: [
@@ -77,24 +81,19 @@ i18n: {
           label: 'Textbook',
         },
         {
-          to: '/docs/introduction',
+          to: '/intro',
           label: 'Introduction',
           position: 'left',
         },
         {
-          href: 'https://github.com/physical-ai-lab/physical-ai-humanoid-textbook',
+          href: 'https://github.com/AnasAAhmed/ai-text-book-assignments',
           label: 'GitHub',
           position: 'right',
         },
         {
-          href: 'https://arxiv.org',
-          label: 'Research',
+          type: 'localeDropdown',
           position: 'right',
         },
-        {
-  type: 'localeDropdown',
-  position: 'right',
-},
 
       ],
     },
@@ -105,9 +104,11 @@ i18n: {
         {
           title: 'Textbook',
           items: [
-            { label: 'Introduction', to: '/docs/introduction' },
-            { label: 'Kinematics & Dynamics', to: '/docs/kinematics' },
-            { label: 'Control & Planning', to: '/docs/control' },
+            { label: 'Introduction', to: '/intro' },
+            { label: 'Robotic Nervous Systems', to: '/module1-ros2/1-1-introduction' },
+            { label: 'The Digital Twin', to: '/module2-digital-twin/2-1-introduction-to-digital-twins' },
+            { label: 'The AI-Robot Brain', to: '/module3-ai-robot-brain/3-1-introduction-to-isaac-platform' },
+            { label: 'Vision-Language-Action', to: '/module4-vla/4-1-introduction-to-vla-systems' },
           ],
         },
         {
@@ -115,7 +116,7 @@ i18n: {
           items: [
             {
               label: 'GitHub Repository',
-              href: 'https://github.com/physical-ai-lab/physical-ai-humanoid-textbook',
+              href: 'https://github.com/AnasAAhmed/ai-text-book-assignments',
             },
             {
               label: 'Datasets',

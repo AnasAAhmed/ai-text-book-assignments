@@ -1,22 +1,22 @@
 {
   "version.label": {
-    "message": "Next",
-    "description": "The label for version current"
+    "message": "اگلا",
+    "description": "موجودہ ورژن کا لیبل"
   },
   "sidebar.tutorialSidebar.category.The Robotic Nervous System": {
-    "message": "The Robotic Nervous System",
-    "description": "The label for category 'The Robotic Nervous System' in sidebar 'tutorialSidebar'"
+    "message": "روبوٹک اعصابی نظام",
+    "description": "سائڈ بار 'tutorialSidebar' میں 'The Robotic Nervous System' کیٹیگری کا لیبل"
   },
   "sidebar.tutorialSidebar.category.The Digital Twin (Gazebo & Unity)": {
-    "message": "The Digital Twin (Gazebo & Unity)",
-    "description": "The label for category 'The Digital Twin (Gazebo & Unity)' in sidebar 'tutorialSidebar'"
+    "message": "ڈیجیٹل ٹوئن (Gazebo & Unity)",
+    "description": "سائڈ بار 'tutorialSidebar' میں 'The Digital Twin (Gazebo & Unity)' کیٹیگری کا لیبل"
   },
   "sidebar.tutorialSidebar.category.The AI-Robot Brain (NVIDIA Isaac)": {
-    "message": "The AI-Robot Brain (NVIDIA Isaac)",
-    "description": "The label for category 'The AI-Robot Brain (NVIDIA Isaac)' in sidebar 'tutorialSidebar'"
+    "message": "اے آئی روبوٹ کا دماغ (NVIDIA Isaac)",
+    "description": "سائڈ بار 'tutorialSidebar' میں 'The AI-Robot Brain (NVIDIA Isaac)' کیٹیگری کا لیبل"
   },
   "sidebar.tutorialSidebar.category.Vision-Language-Action (VLA)": {
-    "message": "Vision-Language-Action (VLA)",
-    "description": "The label for category 'Vision-Language-Action (VLA)' in sidebar 'tutorialSidebar'"
+    "message": "ویژن-لینگویج-ایکشن (VLA)",
+    "description": "سائڈ بار 'tutorialSidebar' میں 'Vision-Language-Action (VLA)' کیٹیگری کا لیبل"
   }
 }

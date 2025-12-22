@@ -1,0 +1,105 @@
+---
+sidebar_position: 4
+---
+
+# نوڈس (Nodes) 
+
+جیسا کہ پہلے تعارف کرایا گیا ہے، **نوڈس (nodes)** آر او ایس 2 (ROS 2) سسٹم کی بنیادی قابلِ عمل اکائیاں (executable units) ہیں۔ ہر نوڈ کو ایک مخصوص کام انجام دینے کے لیے ڈیزائن کیا گیا ہے، جس سے کوڈ کی ماڈیولرٹی اور اسے دوبارہ استعمال کرنے کی صلاحیت کو فروغ ملتا ہے۔
+
+
+
+## نوڈس کا مقصد (The Purpose of Nodes)
+
+نوڈس اس منطق (logic) کو یکجا کرتے ہیں جو ایک خاص کام انجام دیتی ہے، جیسے:
+* **سینسر ڈرائیورز (Sensor Drivers):** کیمرہ، LIDAR، یا IMU سے ڈیٹا پڑھنا۔
+* **ایکچوایٹر کنٹرولرز (Actuator Controllers):** موٹرز، گریپرز، یا روبوٹک بازوؤں کو کمانڈز بھیجنا۔
+* **ڈیٹا پروسیسنگ (Data Processing):** سینسر ڈیٹا کو فلٹر کرنا، اشیاء کی شناخت کرنا، یا ماحول کا نقشہ بنانا۔
+* **فیصلہ سازی (Decision Making):** نیویگیشن الگورتھم، ٹاسک پلانرز، یا اے آئی (AI) ماڈلز کا نفاذ۔
+* **یوزر انٹرفیسز (User Interfaces):** ویژولائزیشن ٹولز یا کنٹرول پینلز فراہم کرنا۔
+
+## نوڈ کا لائف سائیکل (Node Lifecycle)
+
+ROS 2 نوڈس کا ایک لائف سائیکل (lifecycle) ہو سکتا ہے، خاص طور پر مینجڈ نوڈس (managed nodes) کا، جو اسٹیٹ مینجمنٹ کو زیادہ مضبوط بناتا ہے۔ ایک عام لائف سائیکل میں `unconfigured` (غیر ترتیب شدہ)، `inactive` (غیر فعال)، `active` (فعال)، اور `finalized` (خاتمہ شدہ) جیسی حالتیں شامل ہوتی ہیں، اور ان کے درمیان منتقلی (مثلاً `configure`, `activate`, `deactivate`, `cleanup`) ہوتی ہے۔ یہ نوڈس کو شروع کرنے، چلانے اور بند کرنے کا ایک منظم طریقہ فراہم کرتا ہے، جو خاص طور پر مشن-کریٹیکل ایپلی کیشنز کے لیے مفید ہے۔
+
+
+
+## نوڈ بنانا - پائتھن مثال (Creating a Node - Python Example)
+
+آئیے ایک سادہ پائتھن نوڈ کو دیکھتے ہیں جو وقفے وقفے سے "Hello ROS 2!" پرنٹ کرتا ہے۔
+
+پہلے، ایک نیا پائتھن پیکیج بنائیں (اگر آپ نے ابھی تک نہیں بنایا):
+```bash
+cd ~/ros2_ws/src
+ros2 pkg create --build-type ament_python my_python_pkg
+اب، ~/ros2_ws/src/my_python_pkg/my_python_pkg کے اندر، talker_node.py نامی ایک فائل بنائیں:
+
+Python
+
+import rclpy
+from rclpy.node import Node
+
+class TalkerNode(Node):
+    def __init__(self):
+        super().__init__('talker_node')
+        self.timer = self.create_timer(1.0, self.timer_callback)
+        self.get_logger().info('Hello ROS 2 from TalkerNode!')
+
+    def timer_callback(self):
+        self.get_logger().info('Still talking...')
+
+def main(args=None):
+    rclpy.init(args=args)
+    talker_node = TalkerNode()
+    rclpy.spin(talker_node) # نوڈ کو اس وقت تک زندہ رکھتا ہے جب تک Ctrl+C نہ دبایا جائے
+    talker_node.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
+اسکرپٹ کو ایگزیکیوٹیبل (قابلِ عمل) بنائیں:
+
+Bash
+
+chmod +x ~/ros2_ws/src/my_python_pkg/my_python_pkg/talker_node.py
+پھر، آپ کو ROS 2 کو بتانا ہوگا کہ اس ایگزیکیوٹیبل کو کیسے تلاش کیا جائے اور چلایا جائے۔ ~/ros2_ws/src/my_python_pkg/setup.py کھولیں اور entry_points ڈکشنری کے اندر درج ذیل کوڈ شامل کریں:
+
+Python
+
+    entry_points={
+        'console_scripts': [
+            'talker = my_python_pkg.talker_node:main',
+        ],
+    },
+نوڈ کو بلڈ کرنا اور چلانا (Building and Running a Node)
+ورک اسپیس کو بلڈ کریں:
+
+Bash
+
+cd ~/ros2_ws
+colcon build --packages-select my_python_pkg
+سیٹ اپ فائلوں کو سورس کریں:
+
+Bash
+
+source install/setup.bash
+نوڈ چلائیں:
+
+Bash
+
+ros2 run my_python_pkg talker
+آپ کو "Hello ROS 2 from TalkerNode!" اور اس کے بعد ہر سیکنڈ میں "Still talking..." لکھا ہوا نظر آنا چاہیے۔
+
+ros2 run اور ros2 node کمانڈز
+ros2 run <package_name> <executable_name>: یہ کمانڈ کسی ROS 2 پیکیج کے اندر موجود ایگزیکیوٹیبل فائل کو شروع کرنے کے لیے استعمال ہوتی ہے۔
+
+ros2 node list: یہ ROS 2 گراف میں موجود تمام فعال نوڈس کی فہرست دکھاتی ہے۔
+
+ros2 node info <node_name>: یہ کسی مخصوص نوڈ کے بارے میں تفصیلی معلومات فراہم کرتی ہے، بشمول اس کے پبلش کردہ ٹاپکس، سبسکرائب کردہ ٹاپکس، سروسز، ایکشنز اور پیرامیٹرز۔
+
+نوڈس کسی بھی ROS 2 ایپلی کیشن کی ریڑھ کی ہڈی ہیں، جو پیچیدہ روبوٹک سسٹمز کو قابلِ انتظام اور باہم مربوط اجزاء میں تقسیم کرنے کی اجازت دیتے ہیں۔
+
+
+---
+
+**آپ کے لیے اگلا قدم:**
+کیا آپ چاہیں گے کہ میں اگلے حصے، یعنی **"Topics and Messages"** (ٹاپکس اور پیغامات) کا ترجمہ کروں جہاں ہم نوڈس کے درمیان ڈیٹا کے تبادلے کے بارے میں سیکھیں گے؟

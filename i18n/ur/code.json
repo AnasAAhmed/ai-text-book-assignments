@@ -1,4 +1,16 @@
 {
+  "homepage.title": {
+    "message": "فزیکل اے آئی اور ہیومینائیڈ روبوٹکس",
+    "description": "Title text on homepage"
+  },
+  "homepage.tagline": {
+    "message": "مجسم ذہانت، کنٹرول اور ہیومنائیڈ سسٹمز پر ایک جامع درسی کتاب",
+    "description": "tagline text on homepage"
+  },
+  "homepage.button": {
+    "message": "Docs کے ساتھ شروع کریں۔",
+    "description": "Button text on homepage"
+  },
   "theme.ErrorPageContent.title": {
     "message": "This page crashed.",
     "description": "The title of the fallback page when the page crashed"

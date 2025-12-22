@@ -15,13 +15,21 @@
     "message": "تعارف",
     "description": "The label of footer link with label=Introduction linking to /docs/introduction"
   },
-  "link.item.label.Kinematics & Dynamics": {
-    "message": "حرکیات اور حرکی توازن",
-    "description": "The label of footer link with label=Kinematics & Dynamics linking to /docs/kinematics"
+  "link.item.label.Robotic Nervous Systems": {
+    "message": "روبوٹک اعصابی نظام",
+    "description": "The label of footer link with label=Robotic Nervous Systems linking to /docs/kinematics"
   },
-  "link.item.label.Control & Planning": {
-    "message": "کنٹرول اور منصوبہ بندی",
-    "description": "The label of footer link with label=Control & Planning linking to /docs/control"
+  "link.item.label.The Digital Twin": {
+    "message": "ڈیجیٹل ٹوئن (Gazebo & Unity)",
+    "description": "The label of footer link with label=The Digital Twin linking to /docs/control"
+  },
+  "link.item.label.The AI-Robot Brain": {
+    "message": "اے آئی روبوٹ کا دماغ (NVIDIA Isaac)",
+    "description": "The label of footer link with label=The AI-Robot Brain linking to /docs/control"
+  },
+  "link.item.label.Vision-Language-Action": {
+    "message": "ویژن-لینگویج-ایکشن (VLA)",
+    "description": "The label of footer link with label=Vision-Language-Action linking to /docs/control"
   },
   "link.item.label.GitHub Repository": {
     "message": "گٹ ہب ریپوزٹری",
