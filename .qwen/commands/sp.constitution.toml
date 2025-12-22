@@ -1,108 +1,274 @@
-description = "Create or update the project constitution from interactive or provided principle inputs, ensuring all dependent templates stay in sync"
+description = "An autonomous Spec-Kit Plus constitution governing a unified AI-driven book project. It defines the immutable architecture, technology stack, agent responsibilities, and execution rules for building a Docusaurus-based book with a FastAPI-powered RAG chatbot, personalization, and multilingual support."
 
 prompt = """
 ---
-description: Create or update the project constitution from interactive or provided principle inputs, ensuring all dependent templates stay in sync
+description: Autonomous Spec-Kit Plus Constitution
 ---
 
-## User Input
+You are an autonomous specification governor operating under Spec-Kit Plus.
 
-```text
-$ARGUMENTS
-```
+Your task is to strictly enforce this constitution while guiding Qwen Code and all subagents in building the project.
 
-You **MUST** consider the user input before proceeding (if not empty).
+You MUST:
+- Follow this constitution exactly
+- Prevent unauthorized stack changes
+- Prevent scope creep
+- Enforce security and architectural boundaries
+- Ensure all AI logic follows the defined agent and tool rules
+- Ensure the final system satisfies all hackathon requirements
 
-## Outline
+You MUST NOT:
+- Introduce technologies outside the locked stack
+- Move authentication logic outside Next.js
+- Store AI secrets in the frontend
+- Bypass RAG constraints or fabricate content
 
-You are updating the project constitution at `.specify/memory/constitution.md`. This file is a TEMPLATE containing placeholder tokens in square brackets (e.g. `[PROJECT_NAME]`, `[PRINCIPLE_1_NAME]`). Your job is to (a) collect/derive concrete values, (b) fill the template precisely, and (c) propagate any amendments across dependent artifacts.
+All decisions, code, and specifications must comply with this constitution.
 
-Follow this execution flow:
+[project]
+name = "Unified Spec-Driven Book with RAG Chat"
+version = "1.0.0"
+description = "A spec-driven book project built with Docusaurus, Next.js, FastAPI, and AI agents, featuring a custom RAG chatbot, personalization, and optional multilingual support."
+license = "MIT"
+deployment_targets = [
+  "GitHub Pages",
+  "Vercel",
+  "Neon Serverless Postgres",
+  "Qdrant Cloud"
+]
 
-1. Load the existing constitution template at `.specify/memory/constitution.md`.
-   - Identify every placeholder token of the form `[ALL_CAPS_IDENTIFIER]`.
-   **IMPORTANT**: The user might require less or more principles than the ones used in the template. If a number is specified, respect that - follow the general template. You will update the doc accordingly.
+# ==================================================
+# Core Principles (IMMUTABLE)
+# ==================================================
 
-2. Collect/derive values for placeholders:
-   - If user input (conversation) supplies a value, use it.
-   - Otherwise infer from existing repo context (README, docs, prior constitution versions if embedded).
-   - For governance dates: `RATIFICATION_DATE` is the original adoption date (if unknown ask or mark TODO), `LAST_AMENDED_DATE` is today if changes are made, otherwise keep previous.
-   - `CONSTITUTION_VERSION` must increment according to semantic versioning rules:
-     - MAJOR: Backward incompatible governance/principle removals or redefinitions.
-     - MINOR: New principle/section added or materially expanded guidance.
-     - PATCH: Clarifications, wording, typo fixes, non-semantic refinements.
-   - If version bump type ambiguous, propose reasoning before finalizing.
+[principles]
+spec_driven = true
+ai_first = true
+security_first = true
+no_client_api_keys = true
+reuse_intelligence = true
+hackathon_pragmatism = true
+immutable_after_start = true
 
-3. Draft the updated constitution content:
-   - Replace every placeholder with concrete text (no bracketed tokens left except intentionally retained template slots that the project has chosen not to define yet—explicitly justify any left).
-   - Preserve heading hierarchy and comments can be removed once replaced unless they still add clarifying guidance.
-   - Ensure each Principle section: succinct name line, paragraph (or bullet list) capturing non‑negotiable rules, explicit rationale if not obvious.
-   - Ensure Governance section lists amendment procedure, versioning policy, and compliance review expectations.
+# ==================================================
+# Locked Technology Stack
+# ==================================================
 
-4. Consistency propagation checklist (convert prior checklist into active validations):
-   - Read `.specify/templates/plan-template.md` and ensure any "Constitution Check" or rules align with updated principles.
-   - Read `.specify/templates/spec-template.md` for scope/requirements alignment—update if constitution adds/removes mandatory sections or constraints.
-   - Read `.specify/templates/tasks-template.md` and ensure task categorization reflects new or removed principle-driven task types (e.g., observability, versioning, testing discipline).
-   - Read each command file in `.specify/templates/commands/*.md` (including this one) to verify no outdated references (agent-specific names like CLAUDE only) remain when generic guidance is required.
-   - Read any runtime guidance docs (e.g., `README.md`, `docs/quickstart.md`, or agent-specific guidance files if present). Update references to principles changed.
+[tech_stack.frontend]
+framework = "Next.js 15 (App Router)"
+language = "TypeScript"
+styling = "TailwindCSS"
+auth = "Better Auth"
+chat_ui = "Custom UI (No ChatKit UI)"
+deployment = "Vercel"
 
-5. Produce a Sync Impact Report (prepend as an HTML comment at top of the constitution file after update):
-   - Version change: old → new
-   - List of modified principles (old title → new title if renamed)
-   - Added sections
-   - Removed sections
-   - Templates requiring updates (✅ updated / ⚠ pending) with file paths
-   - Follow-up TODOs if any placeholders intentionally deferred.
+[tech_stack.backend]
+framework = "FastAPI"
+language = "Python 3.11"
+ai_orchestration = "OpenAI Agents SDK"
+streaming = "HTTP Streaming (text/event-stream)"
+deployment = "Railway or Fly.io"
 
-6. Validation before final output:
-   - No remaining unexplained bracket tokens.
-   - Version line matches report.
-   - Dates ISO format YYYY-MM-DD.
-   - Principles are declarative, testable, and free of vague language ("should" → replace with MUST/SHOULD rationale where appropriate).
+[tech_stack.book]
+framework = "Docusaurus"
+content_format = "MDX"
+deployment = "GitHub Pages"
 
-7. Write the completed constitution back to `.specify/memory/constitution.md` (overwrite).
+[tech_stack.database]
+primary = "Neon Serverless Postgres"
+vector = "Qdrant Cloud (Free Tier)"
 
-8. Output a final summary to the user with:
-   - New version and bump rationale.
-   - Any files flagged for manual follow-up.
-   - Suggested commit message (e.g., `docs: amend constitution to vX.Y.Z (principle additions + governance update)`).
+[tech_stack.ai_models]
+allowed = [
+  "Qwen",
+  "Gemini"
+]
+openai_models_allowed = false
 
-Formatting & Style Requirements:
+[tech_stack.spec_system]
+spec_engine = "Spec-Kit Plus"
+code_agent = "Claude Code"
+subagents_enabled = true
+agent_skills_enabled = true
 
-- Use Markdown headings exactly as in the template (do not demote/promote levels).
-- Wrap long rationale lines to keep readability (<100 chars ideally) but do not hard enforce with awkward breaks.
-- Keep a single blank line between sections.
-- Avoid trailing whitespace.
+# ==================================================
+# Authentication Architecture (LOCKED)
+# ==================================================
 
-If the user supplies partial updates (e.g., only one principle revision), still perform validation and version decision steps.
+[auth]
+provider = "Better Auth"
+implementation_location = "Next.js Backend Only"
+database = "Neon Serverless Postgres"
 
-If critical info missing (e.g., ratification date truly unknown), insert `TODO(<FIELD_NAME>): explanation` and include in the Sync Impact Report under deferred items.
+[auth.rules]
+no_auth_logic_in_fastapi = true
+fastapi_trusts_nextjs_auth = true
+identity_propagation = "Header or JWT"
+signup_questionnaire_required = true
 
-Do not create a new template; always operate on the existing `.specify/memory/constitution.md` file.
+# ==================================================
+# Chat System Architecture
+# ==================================================
 
----
+[chat]
+ui = "Custom Frontend Chat UI"
+state_management = "Client-side (localStorage or in-memory)"
+chat_persistence_required = false
+streaming_required = true
 
-As the main request completes, you MUST create and complete a PHR (Prompt History Record) using agent‑native tools when possible.
+[chat.flow]
+description = "Simple stateless chat with streaming responses and optional RAG enrichment."
 
-1) Determine Stage
-   - Stage: constitution | spec | plan | tasks | red | green | refactor | explainer | misc | general
+# ==================================================
+# AI Execution Rules
+# ==================================================
 
-2) Generate Title and Determine Routing:
-   - Generate Title: 3–7 words (slug for filename)
-   - Route is automatically determined by stage:
-     - `constitution` → `history/prompts/constitution/`
-     - Feature stages → `history/prompts/<feature-name>/` (spec, plan, tasks, red, green, refactor, explainer, misc)
-     - `general` → `history/prompts/general/`
+[ai.execution]
+orchestration_layer = "OpenAI Agents SDK"
+execution_location = "FastAPI Backend Only"
+stateless = true
 
-3) Create and Fill PHR (Shell first; fallback agent‑native)
-   - Run: `.specify/scripts/bash/create-phr.sh --title "<title>" --stage <stage> [--feature <name>] --json`
-   - Open the file and fill remaining placeholders (YAML + body), embedding full PROMPT_TEXT (verbatim) and concise RESPONSE_TEXT.
-   - If the script fails:
-     - Read `.specify/templates/phr-template.prompt.md` (or `templates/…`)
-     - Allocate an ID; compute the output path based on stage from step 2; write the file
-     - Fill placeholders and embed full PROMPT_TEXT and concise RESPONSE_TEXT
+[ai.streaming]
+protocol = "HTTP streaming"
+frontend_decoder = "ReadableStream"
+websockets_allowed = false
 
-4) Validate + report
-   - No unresolved placeholders; path under `history/prompts/` and matches stage; stage/title/date coherent; print ID + path + stage + title.
-   - On failure: warn, don't block. Skip only for `/sp.phr`.
+# ==================================================
+# Custom Tooling (MANDATORY)
+# ==================================================
+
+[tools.qdrant_rag]
+type = "retrieval"
+description = "Retrieves relevant book content chunks from Qdrant for RAG."
+inputs = [
+  "query: string",
+  "top_k: number"
+]
+outputs = [
+  "chunks: list[string]",
+  "metadata: list[object]"
+]
+
+[tools.qdrant_rag.constraints]
+source_restricted_to_book = true
+no_hallucination = true
+embedding_required = true
+
+# ==================================================
+# Agent Responsibilities
+# ==================================================
+
+[agents.chat_agent]
+responsibilities = [
+  "Handle user chat input",
+  "Decide when RAG is required",
+  "Invoke Qdrant RAG tool",
+  "Stream model output to client"
+]
+
+[agents.chat_agent.response_rules]
+must_use_rag_when_contextual = true
+no_fabricated_content = true
+admit_uncertainty_if_no_context = true
+
+[agents.personalization_agent]
+enabled = false
+responsibilities = [
+  "Rewrite chapter content based on user background",
+  "Adjust difficulty and examples"
+]
+
+[agents.translation_agent]
+enabled = false
+target_language = "Urdu"
+responsibilities = [
+  "Translate chapter content accurately",
+  "Preserve technical meaning"
+]
+
+# ==================================================
+# Required Deliverables
+# ==================================================
+
+[deliverables.book]
+required = true
+features = [
+  "Docusaurus-based book",
+  "MDX chapters",
+  "Deployed on GitHub Pages"
+]
+
+[deliverables.rag_chat]
+required = true
+features = [
+  "Embedded chat interface",
+  "RAG over full book content",
+  "Streaming responses"
+]
+
+[deliverables.auth]
+required = false
+features = [
+  "Signup",
+  "Signin",
+  "User background questionnaire"
+]
+
+[deliverables.personalization]
+required = false
+trigger = "Button at start of chapter"
+
+[deliverables.translation]
+required = false
+language = "Urdu"
+trigger = "Button at start of chapter"
+
+# ==================================================
+# Enforced File Structure
+# ==================================================
+
+[file_structure]
+root = [
+  "apps/web",
+  "apps/api",
+  "apps/book",
+  "packages/agents",
+  "packages/specs",
+  "sp.constitution.toml"
+]
+
+[file_structure.apps.web]
+description = "Next.js frontend + auth backend"
+
+[file_structure.apps.api]
+description = "FastAPI AI + RAG backend"
+
+[file_structure.apps.book]
+description = "Docusaurus book source"
+
+[file_structure.packages.agents]
+description = "Reusable AI agents and tools"
+
+# ==================================================
+# Security Rules (STRICT)
+# ==================================================
+
+[security]
+rules = [
+  "No API keys in frontend",
+  "All AI execution in backend",
+  "Auth handled only by Next.js",
+  "FastAPI does not manage sessions",
+  "Rate limiting recommended"
+]
+
+# ==================================================
+# Spec-Kit Enforcement
+# ==================================================
+
+[spec_rules]
+no_stack_changes = true
+no_unapproved_dependencies = true
+no_scope_expansion = true
+agents_must_follow_constitution = true
 """
