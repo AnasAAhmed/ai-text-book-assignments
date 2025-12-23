@@ -49,7 +49,7 @@ const config: Config = {
           routeBasePath: '/', // textbook opens at root
           sidebarPath: './sidebars.ts',
           editUrl:
-            'https://github.com/physical-ai-lab/physical-ai-humanoid-textbook/edit/main/',
+            'https://github.com/AnasAAhmed/ai-text-book-assignments',
         },
         blog: false, // textbooks usually don’t need a blog
         theme: {
